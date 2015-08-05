@@ -9,7 +9,7 @@ FROM howgood/base
 
 RUN apt-get purge -y python.*
 
-ENV PYTHON_VERSION 2.7.9
+ENV PYTHON_VERSION 2.7.10
 
 # gpg: key 18ADD4FF: public key "Benjamin Peterson <benjamin@python.org>" imported
 RUN gpg --keyserver pool.sks-keyservers.net --recv-keys C01E1CAD5EA2C4F0B8E3571504C367C218ADD4FF
@@ -38,13 +38,10 @@ RUN set -x \
 ############
 
 # Python env
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-ENV C_FORCE_ROOT 1
-
-# Pip env
-ENV XDG_CACHE_HOME /tmp
-RUN mkdir -p $XDG_CACHE_HOME
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    C_FORCE_ROOT=1 \
+    XDG_CACHE_HOME=/tmp
 
 # Add the bin scripts
 COPY ./bin /usr/local/bin/
