@@ -10,8 +10,9 @@ FROM howgood/base
 RUN apt-get purge -y python.*
 
 # gpg: key 18ADD4FF: public key "Benjamin Peterson <benjamin@python.org>" imported
-RUN gpg --keyserver pool.sks-keyservers.net --recv-keys C01E1CAD5EA2C4F0B8E3571504C367C218ADD4FF
+ENV GPG_KEY C01E1CAD5EA2C4F0B8E3571504C367C218ADD4FF
 
+ENV LANG C.UTF-8
 ENV PYTHON_VERSION 2.7.11
 ENV PYTHON_PIP_VERSION 8.0.3
 
