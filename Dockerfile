@@ -14,7 +14,6 @@ ENV GPG_KEY C01E1CAD5EA2C4F0B8E3571504C367C218ADD4FF
 
 ENV LANG C.UTF-8
 ENV PYTHON_VERSION 2.7.12
-ENV PYTHON_PIP_VERSION 8.1.2
 
 RUN set -ex \
   && curl -fSL "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz" -o python.tar.xz \
@@ -33,7 +32,7 @@ RUN set -ex \
   && make install \
   && ldconfig \
   && curl -fSL 'https://bootstrap.pypa.io/get-pip.py' | python2 \
-  && pip install --no-cache-dir --upgrade pip==$PYTHON_PIP_VERSION \
+  && pip install --no-cache-dir --upgrade --force-reinstall pip \
   && find /usr/local -depth \
     \( -type d -a -name test -o -name tests \) \
     -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
